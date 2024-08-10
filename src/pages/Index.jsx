@@ -15,23 +15,23 @@ const Index = () => {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 to-blue-100 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 py-16">
       <div className="container mx-auto px-4">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-5xl font-bold mb-4 text-center text-gray-800"
+          className="text-5xl font-bold mb-4 text-center text-primary"
         >
-          Adorable Baby Fashion
+          Timeless Baby Fashion
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-xl text-gray-600 mb-12 text-center"
+          className="text-xl text-muted-foreground mb-12 text-center font-serif"
         >
-          Discover the cutest outfits for your little ones!
+          Discover charming vintage-inspired outfits for your little darlings
         </motion.p>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -43,7 +43,7 @@ const Index = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card
-                className="overflow-hidden transition-shadow duration-300 ease-in-out hover:shadow-xl"
+                className="overflow-hidden transition-shadow duration-300 ease-in-out hover:shadow-xl border-2 border-primary"
                 onMouseEnter={() => setHoveredId(item.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
@@ -52,13 +52,13 @@ const Index = () => {
                     <img
                       src={item.src}
                       alt={item.alt}
-                      className="w-full h-80 object-cover transition-transform duration-300 ease-in-out"
+                      className="w-full h-80 object-cover transition-transform duration-300 ease-in-out sepia-[0.2]"
                       style={{
                         transform: hoveredId === item.id ? 'scale(1.05)' : 'scale(1)',
                       }}
                     />
                     <div
-                      className="absolute inset-0 bg-black bg-opacity-20 transition-opacity duration-300 ease-in-out"
+                      className="absolute inset-0 bg-primary bg-opacity-20 transition-opacity duration-300 ease-in-out"
                       style={{
                         opacity: hoveredId === item.id ? 1 : 0,
                       }}
