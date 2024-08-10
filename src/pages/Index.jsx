@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 
 const babyFashionItems = [
@@ -10,23 +12,61 @@ const babyFashionItems = [
 ];
 
 const Index = () => {
+  const [hoveredId, setHoveredId] = useState(null);
+
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-pink-100 to-blue-100 py-16">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-bold mb-4 text-center">Adorable Baby Fashion</h1>
-        <p className="text-xl text-gray-600 mb-8 text-center">Discover the cutest outfits for your little ones!</p>
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-5xl font-bold mb-4 text-center text-gray-800"
+        >
+          Adorable Baby Fashion
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-xl text-gray-600 mb-12 text-center"
+        >
+          Discover the cutest outfits for your little ones!
+        </motion.p>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {babyFashionItems.map((item) => (
-            <Card key={item.id}>
-              <CardContent className="p-4">
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="w-full h-64 object-cover rounded-md"
-                />
-              </CardContent>
-            </Card>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {babyFashionItems.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Card
+                className="overflow-hidden transition-shadow duration-300 ease-in-out hover:shadow-xl"
+                onMouseEnter={() => setHoveredId(item.id)}
+                onMouseLeave={() => setHoveredId(null)}
+              >
+                <CardContent className="p-0">
+                  <div className="relative">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="w-full h-80 object-cover transition-transform duration-300 ease-in-out"
+                      style={{
+                        transform: hoveredId === item.id ? 'scale(1.05)' : 'scale(1)',
+                      }}
+                    />
+                    <div
+                      className="absolute inset-0 bg-black bg-opacity-20 transition-opacity duration-300 ease-in-out"
+                      style={{
+                        opacity: hoveredId === item.id ? 1 : 0,
+                      }}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
