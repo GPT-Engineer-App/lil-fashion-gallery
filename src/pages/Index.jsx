@@ -57,12 +57,6 @@ const Index = () => {
                         transform: hoveredId === item.id ? 'scale(1.05)' : 'scale(1)',
                       }}
                     />
-                    <div
-                      className="absolute inset-0 bg-primary bg-opacity-20 transition-opacity duration-300 ease-in-out"
-                      style={{
-                        opacity: hoveredId === item.id ? 1 : 0,
-                      }}
-                    />
                   </div>
                 </CardContent>
               </Card>
